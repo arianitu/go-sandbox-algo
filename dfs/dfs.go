@@ -1,4 +1,4 @@
-package main
+package dfs
 
 import (
 	"fmt"
@@ -57,5 +57,7 @@ func main() {
 			data: "YO",
 		},
 	}
-	Preorder(n, visit)
+	Preorder(n, func (n *Node) {
+		fmt.Println(n.data)
+	})
 }
