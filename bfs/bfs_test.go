@@ -6,26 +6,26 @@ import (
 
 var tree = &Node{
 	data: "F",
-	left: &Node {
+	left: &Node{
 		data: "B",
-		left: &Node {
+		left: &Node{
 			data: "A",
 		},
-		right: &Node {
+		right: &Node{
 			data: "D",
-			left: &Node {
+			left: &Node{
 				data: "C",
 			},
-			right: &Node {
+			right: &Node{
 				data: "E",
 			},
 		},
 	},
-	right: &Node {
+	right: &Node{
 		data: "G",
-		right: &Node {
+		right: &Node{
 			data: "I",
-			left: &Node {
+			left: &Node{
 				data: "H",
 			},
 		},
@@ -35,10 +35,10 @@ var tree = &Node{
 func TestBfs(t *testing.T) {
 	p := []string{"F", "B", "G", "A", "D", "I", "C", "E", "H"}
 	i := 0
-	Bfs(tree, func (n *Node) {
+	Bfs(tree, func(n *Node) {
 		if n.data != p[i] {
 			t.Fatalf("Expected %s, got %s, at index %d", p[i], n.data, i)
 		}
 		i++
-	});
+	})
 }

@@ -5,8 +5,8 @@ import (
 )
 
 type Node struct {
-	data string
-	left *Node
+	data  string
+	left  *Node
 	right *Node
 }
 
@@ -14,7 +14,7 @@ func visit(n *Node) {
 	fmt.Println(n.data)
 }
 
-func Preorder(n *Node, visit func (n *Node)) {
+func Preorder(n *Node, visit func(n *Node)) {
 	if n == nil {
 		return
 	}
@@ -23,16 +23,16 @@ func Preorder(n *Node, visit func (n *Node)) {
 	Preorder(n.right, visit)
 }
 
-func Inorder(n *Node, visit func (n *Node)) {
+func Inorder(n *Node, visit func(n *Node)) {
 	if n == nil {
 		return
 	}
 	Inorder(n.left, visit)
-	visit(n)	
+	visit(n)
 	Inorder(n.right, visit)
 }
 
-func Postorder(n *Node, visit func (n *Node)) {
+func Postorder(n *Node, visit func(n *Node)) {
 	if n == nil {
 		return
 	}
@@ -44,20 +44,20 @@ func Postorder(n *Node, visit func (n *Node)) {
 func main() {
 	n := &Node{
 		data: "LOL",
-		left: &Node {
+		left: &Node{
 			data: "DOG",
-			left: &Node {
+			left: &Node{
 				data: "MEEP",
 			},
-			right: &Node {
+			right: &Node{
 				data: "KEEP",
 			},
 		},
-		right: &Node {
+		right: &Node{
 			data: "YO",
 		},
 	}
-	Preorder(n, func (n *Node) {
+	Preorder(n, func(n *Node) {
 		fmt.Println(n.data)
 	})
 }

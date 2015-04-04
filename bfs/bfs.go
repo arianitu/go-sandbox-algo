@@ -5,23 +5,23 @@ import (
 )
 
 type Node struct {
-	data string
-	left *Node
+	data  string
+	left  *Node
 	right *Node
 }
 
-func Bfs(n *Node, visit func (n *Node)) {
+func Bfs(n *Node, visit func(n *Node)) {
 	if n == nil {
 		panic("Root node is null")
 	}
-	
+
 	queue := list.New()
 	queue.PushBack(n)
 
 	elem := queue.Front()
 	for elem != nil {
 		node, ok := queue.Remove(elem).(*Node)
-		if ! ok {
+		if !ok {
 			panic("Node is not of type *Node")
 		}
 
@@ -35,4 +35,3 @@ func Bfs(n *Node, visit func (n *Node)) {
 		elem = queue.Front()
 	}
 }
-
