@@ -1,2 +1,3 @@
 # go-sandbox-algo
-Implementation of random algorithms in Go
+Implementation of random algorithms in Go (for learning purposes)
+
