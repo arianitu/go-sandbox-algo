@@ -1,7 +1,7 @@
 package algo
 
 type Element struct {
-    data string
+	data string
 }
 
 type Queue struct {
