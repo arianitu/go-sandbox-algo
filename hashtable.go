@@ -1,4 +1,9 @@
-package algo
+package main
+
+import (
+	"hash/crc32"
+	"fmt"
+)
 
 const (
 	DEFAULT_HASH_SIZE = 4096
@@ -35,14 +40,11 @@ func (h *HashTable) Set(key string, value string) {
 	}
 
 	// collision
-	prev := entry
-	next := entry.next
-	for next != nil {
-		prev = next
-		next = entry.next
+	for entry.next != nil {
+		entry = entry.next
 	}
+	entry.next = newEntry
 
-	prev.next = newEntry
 	h.entries += 1
 }
 
@@ -76,4 +78,14 @@ func (h *HashTable) Get(key string) string {
 	}
 
 	return foundEntry.data
+}
+
+func main() {
+	table := NewHashTable(DEFAULT_HASH_SIZE)
+	table.Set("foo", "bar")
+	table.Set("dog", "cat")
+	
+	fmt.Println(table.Get("foo"))
+	fmt.Println(table.Get("dog"))
+	
 }
