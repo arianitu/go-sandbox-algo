@@ -32,11 +32,9 @@ func find(node *Node, data int) int {
 		return node.data
 	}
 	if data < node.data {
-		fmt.Println("go left")
 		return find(node.left, data)
 	}
 
-	fmt.Println("go right")
 	return find(node.right, data)
 }
 
