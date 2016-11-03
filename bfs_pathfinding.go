@@ -6,10 +6,10 @@ import (
 )
 
 type Node struct {
-	data   int
-	parent *Node
-	left   *Node
-	right  *Node
+	data  int
+	path  []int
+	left  *Node
+	right *Node
 }
 
 type Queue struct {
@@ -39,47 +39,27 @@ func (q *Queue) IsEmpty() bool {
 }
 
 func findShortestPathToNode(root *Node, data int) []int {
-	path := make([]int, 0)
-
 	q := NewQueue()
 	q.Push(root)
 	for !q.IsEmpty() {
 		node := q.Pop()
 
 		if node.data == data {
-			for node.parent != nil {
-				path = append(path, node.data)
-				node = node.parent
-			}
-
-			// root
-			path = append(path, node.data)
+			return append(node.path, node.data)
 			break
 		}
+
 		if node.left != nil {
-			node.left.parent = node
+			node.left.path = append(node.path, node.data)
 			q.Push(node.left)
 		}
 		if node.right != nil {
-			node.right.parent = node
+			node.right.path = append(node.path, node.data)
 			q.Push(node.right)
 		}
 	}
 
-	return reverse(path)
-}
-
-func reverse(nums []int) []int {
-	reversed := make([]int, len(nums))
-	i := len(nums) - 1
-	n := 0
-	for i >= 0 {
-		reversed[n] = nums[i]
-		i -= 1
-		n += 1
-	}
-
-	return reversed
+	return nil
 }
 
 func height(n *Node) float64 {
@@ -92,6 +72,7 @@ func height(n *Node) float64 {
 func main() {
 	tree := &Node{
 		data: 1,
+		path: make([]int, 0),
 		left: &Node{
 			data: 2,
 			left: &Node{
